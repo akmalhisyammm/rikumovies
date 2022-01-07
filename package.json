@@ -3,6 +3,7 @@
   "private": true,
   "description": "Movies collection web app",
   "author": "Muhammad Akmal Hisyam",
+  "license": "MIT",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
