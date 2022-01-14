@@ -1,11 +1,12 @@
-const TMDB_API_BASE_URL = 'https://api.themoviedb.org/3';
+/* POSTER URL */
+export const TMDB_API_POSTER_URL = 'https://image.tmdb.org/t/p/original/';
 
-/* URL */
-export const TMDB_API_DISCOVER_URL = `${TMDB_API_BASE_URL}/discover`;
-export const TMDB_API_GENRE_URL = `${TMDB_API_BASE_URL}/genre`;
-export const TMDB_API_MOVIE_URL = `${TMDB_API_BASE_URL}/movie`;
-export const TMDB_API_PERSON_URL = `${TMDB_API_BASE_URL}/person`;
-export const TMDB_API_SEARCH_URL = `${TMDB_API_BASE_URL}/search`;
+/* HOOKS URL */
+export const TMDB_API_DISCOVER_URL = 'https://api.themoviedb.org/3/discover';
+export const TMDB_API_GENRE_URL = 'https://api.themoviedb.org/3/genre';
+export const TMDB_API_MOVIE_URL = 'https://api.themoviedb.org/3/movie';
+export const TMDB_API_PERSON_URL = 'https://api.themoviedb.org/3/person';
+export const TMDB_API_SEARCH_URL = 'https://api.themoviedb.org/3/search';
 
 /* PARAMS */
 export const TMDB_API_PARAMS = {
