@@ -5,3 +5,4 @@ export * from './useNowPlayingMovies';
 export * from './usePopularMovies';
 export * from './useSimilarMovies';
 export * from './useTopRatedMovies';
+export * from './useUpcomingMovies';
