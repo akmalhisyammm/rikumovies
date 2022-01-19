@@ -43,19 +43,16 @@ const FeaturedSection = ({ title }: FeaturedSectionProps) => {
       </Box>
 
       <Box whiteSpace="nowrap" overflowX="auto" padding={2}>
-        {featuredMovies()
-          .data?.results.slice(0, 8)
-          .map((movie) => (
-            <Skeleton
-              key={movie.id}
-              display="inline-block"
-              position="relative"
-              maxWidth={150}
-              marginX={3}
-              borderRadius={24}
-              isLoaded={!featuredMovies().isLoading}
-              fadeDuration={2}>
+        <Skeleton isLoaded={!featuredMovies().isLoading} fadeDuration={2}>
+          {featuredMovies()
+            .data?.results.slice(0, 8)
+            .map((movie) => (
               <Box
+                key={movie.id}
+                display="inline-block"
+                position="relative"
+                maxWidth={150}
+                marginX={3}
                 borderRadius={24}
                 boxShadow="0px 4px 12px 0px rgba(0, 0, 0, 0.5)"
                 transition="0.1s ease-out"
@@ -71,6 +68,7 @@ const FeaturedSection = ({ title }: FeaturedSectionProps) => {
                   width="100%"
                   height="auto"
                   borderRadius={24}
+                  fallback={<Skeleton width={150} height={225} borderRadius={24} />}
                 />
                 <Box
                   display="flex"
@@ -90,8 +88,8 @@ const FeaturedSection = ({ title }: FeaturedSectionProps) => {
                   </Text>
                 </Box>
               </Box>
-            </Skeleton>
-          ))}
+            ))}
+        </Skeleton>
       </Box>
     </Box>
   );
