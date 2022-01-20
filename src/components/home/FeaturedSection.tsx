@@ -1,94 +1,33 @@
-import { Box, Heading, Image, Skeleton, Text } from '@chakra-ui/react';
-import { useRouter } from 'next/router';
-import { TMDB_API_POSTER_URL } from 'constants/tmdb';
-import {
-  useNowPlayingMovies,
-  useUpcomingMovies,
-  usePopularMovies,
-  useTopRatedMovies,
-} from 'hooks/movie';
+import { Box, Button, Heading, HStack, Skeleton, Text } from '@chakra-ui/react';
 import { SWRFeaturedMovies } from 'types/movie';
 
+import { FeaturedCard } from 'components/images';
+
 type FeaturedSectionProps = {
-  title: 'Now Playing' | 'Popular' | 'Top Rated' | 'Upcoming';
+  title: string;
+  hook: SWRFeaturedMovies;
 };
 
-const FeaturedSection = ({ title }: FeaturedSectionProps) => {
-  const router = useRouter();
-
-  const nowPlayingMovies: SWRFeaturedMovies = useNowPlayingMovies();
-  const popularMovies: SWRFeaturedMovies = usePopularMovies();
-  const topRatedMovies: SWRFeaturedMovies = useTopRatedMovies();
-  const upcomingMovies: SWRFeaturedMovies = useUpcomingMovies();
-
-  const featuredMovies = () => {
-    switch (title) {
-      case 'Now Playing':
-        return nowPlayingMovies;
-      case 'Popular':
-        return popularMovies;
-      case 'Top Rated':
-        return topRatedMovies;
-      case 'Upcoming':
-        return upcomingMovies;
-    }
-  };
-
-  if (featuredMovies().isError) return <Text>Failed to Fetch Data</Text>;
+const FeaturedSection = ({ title, hook }: FeaturedSectionProps) => {
+  if (hook.isError) return <Text>Failed to Fetch Data</Text>;
 
   return (
     <Box marginY={8}>
-      <Box marginBottom={4}>
+      <HStack justifyContent="space-between" marginBottom={4}>
         <Heading fontSize="3xl">{title}</Heading>
-      </Box>
+        <Button variant="ghost">See more</Button>
+      </HStack>
 
       <Box whiteSpace="nowrap" overflowX="auto" padding={2}>
-        <Skeleton isLoaded={!featuredMovies().isLoading} fadeDuration={2}>
-          {featuredMovies()
-            .data?.results.slice(0, 8)
-            .map((movie) => (
-              <Box
-                key={movie.id}
-                display="inline-block"
-                position="relative"
-                maxWidth={150}
-                marginX={3}
-                borderRadius={24}
-                boxShadow="0px 4px 12px 0px rgba(0, 0, 0, 0.5)"
-                transition="0.1s ease-out"
-                onClick={() => router.push(`/movie/${movie.id}`)}
-                _hover={{
-                  cursor: 'pointer',
-                  transform: 'scale(1.05)',
-                }}>
-                <Image
-                  src={TMDB_API_POSTER_URL + movie.poster_path}
-                  alt={movie.id}
-                  display="block"
-                  width="100%"
-                  height="auto"
-                  borderRadius={24}
-                  fallback={<Skeleton width={150} height={225} borderRadius={24} />}
-                />
-                <Box
-                  display="flex"
-                  position="absolute"
-                  justifyContent="center"
-                  alignItems="center"
-                  width="100%"
-                  height="100%"
-                  borderRadius={24}
-                  padding={4}
-                  backgroundColor="rgba(0, 0, 0, 0.5)"
-                  inset={0}
-                  opacity={0}
-                  _hover={{ opacity: 1 }}>
-                  <Text color="white" textAlign="center" fontWeight={600} whiteSpace="normal">
-                    {movie.title}
-                  </Text>
-                </Box>
-              </Box>
-            ))}
+        <Skeleton isLoaded={!hook.isLoading} fadeDuration={2}>
+          {hook.data?.results.slice(0, 8).map((movie) => (
+            <FeaturedCard
+              key={movie.id}
+              title={movie.title}
+              imagePath={movie.poster_path}
+              routerPath={`/movie/${movie.id}`}
+            />
+          ))}
         </Skeleton>
       </Box>
     </Box>
