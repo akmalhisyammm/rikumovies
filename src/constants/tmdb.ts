@@ -1,5 +1,5 @@
-/* POSTER URL */
-export const TMDB_API_POSTER_URL = 'https://image.tmdb.org/t/p/original/';
+/* IMAGE URL */
+export const TMDB_API_IMAGE_URL = 'https://image.tmdb.org/t/p/original/';
 
 /* HOOKS URL */
 export const TMDB_API_DISCOVER_URL = 'https://api.themoviedb.org/3/discover';
