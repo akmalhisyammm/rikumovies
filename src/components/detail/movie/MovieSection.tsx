@@ -14,14 +14,21 @@ import {
 } from '@chakra-ui/react';
 import { FaExternalLinkAlt, FaImdb } from 'react-icons/fa';
 import { DateTime } from 'luxon';
+import { useMovieDetail } from 'hooks/movie';
 import { SWRMovieDetail } from 'types/movie';
 import { runtimeFormat } from 'utils/runtimeFormat';
 
 import { DetailCard } from 'components/images';
 
-const MovieSection = ({ data, isLoading, isError }: SWRMovieDetail) => {
+type MovieSectionProps = {
+  movieId: string;
+};
+
+const MovieSection = ({ movieId }: MovieSectionProps) => {
+  const movieDetail: SWRMovieDetail = useMovieDetail(movieId as string);
+
   const statusColor = () => {
-    switch (data?.status) {
+    switch (movieDetail.data?.status) {
       case 'Rumored':
         return 'orange';
       case 'Planned':
@@ -37,51 +44,58 @@ const MovieSection = ({ data, isLoading, isError }: SWRMovieDetail) => {
     }
   };
 
-  if (isError) return <Text>Failed to Fetch Data</Text>;
+  if (movieDetail.isError) return <Text>Failed to Fetch movieDetail.Data</Text>;
 
   return (
     <SimpleGrid columns={[1, 1, 2]} gap={[4, 4, 8]}>
       {/* POSTER */}
-      <DetailCard imagePath={data?.poster_path} />
+      <DetailCard imagePath={movieDetail.data?.poster_path} />
 
       {/* DESCRIPTION */}
       <Box textAlign={['center', 'center', 'left']}>
-        <Skeleton isLoaded={!isLoading} fadeDuration={2}>
+        <Skeleton isLoaded={!movieDetail.isLoading} fadeDuration={2}>
           <Box>
             <Heading marginBottom={2}>
-              {data?.title} ({DateTime.fromISO(data?.release_date).toFormat('yyyy')})
+              {movieDetail.data?.title} (
+              {DateTime.fromISO(movieDetail.data?.release_date).toFormat('yyyy')})
             </Heading>
-            <Text fontStyle="italic">{data?.tagline}</Text>
+            <Text fontStyle="italic">{movieDetail.data?.tagline}</Text>
           </Box>
         </Skeleton>
 
-        <Skeleton isLoaded={!isLoading} fadeDuration={2}>
+        <Skeleton isLoaded={!movieDetail.isLoading} fadeDuration={2}>
           <Box marginY={8}>
             <HStack
               justifyContent={['center', 'center', 'left']}
               alignItems="center"
               gap={2}
               marginBottom={4}>
-              <CircularProgress value={data?.vote_average * 10} color="green.400" thickness={8}>
-                <CircularProgressLabel>{data?.vote_average * 10}%</CircularProgressLabel>
+              <CircularProgress
+                value={movieDetail.data?.vote_average * 10}
+                color="green.400"
+                thickness={8}>
+                <CircularProgressLabel>
+                  {movieDetail.data?.vote_average * 10}%
+                </CircularProgressLabel>
               </CircularProgress>
               <Box>
                 <Text fontWeight="600">User Score</Text>
-                <Text as="small">({data?.vote_count} voted)</Text>
+                <Text as="small">({movieDetail.data?.vote_count} voted)</Text>
               </Box>
             </HStack>
 
             <HStack marginBottom={4} justifyContent={['center', 'center', 'left']}>
               <Badge variant="outline" colorScheme={statusColor()}>
-                {data?.status}
+                {movieDetail.data?.status}
               </Badge>
               <Text as="small">
-                &bull; {runtimeFormat(data?.runtime).hours}h {runtimeFormat(data?.runtime).minutes}m
+                &bull; {runtimeFormat(movieDetail.data?.runtime).hours}h{' '}
+                {runtimeFormat(movieDetail.data?.runtime).minutes}m
               </Text>
             </HStack>
 
             <HStack marginBottom={4} justifyContent={['center', 'center', 'left']}>
-              {data?.genres.map((genre) => (
+              {movieDetail.data?.genres.map((genre) => (
                 <Badge key={genre.id} variant="outline">
                   {genre.name}
                 </Badge>
@@ -89,12 +103,12 @@ const MovieSection = ({ data, isLoading, isError }: SWRMovieDetail) => {
             </HStack>
 
             <HStack marginY={4} justifyContent={['center', 'center', 'left']}>
-              <Link href={data?.homepage} isExternal>
+              <Link href={movieDetail.data?.homepage} isExternal>
                 <Button size="sm" leftIcon={<FaExternalLinkAlt />}>
                   Website
                 </Button>
               </Link>
-              <Link href={'https://www.imdb.com/title/' + data?.imdb_id} isExternal>
+              <Link href={'https://www.imdb.com/title/' + movieDetail.data?.imdb_id} isExternal>
                 <Button size="sm" leftIcon={<FaImdb />}>
                   IMDB
                 </Button>
@@ -103,9 +117,9 @@ const MovieSection = ({ data, isLoading, isError }: SWRMovieDetail) => {
           </Box>
         </Skeleton>
 
-        <SkeletonText isLoaded={!isLoading} noOfLines={8} spacing={3} fadeDuration={2}>
+        <SkeletonText isLoaded={!movieDetail.isLoading} noOfLines={8} spacing={3} fadeDuration={2}>
           <Box>
-            <Text textAlign="justify">{data?.overview}</Text>
+            <Text textAlign="justify">{movieDetail.data?.overview}</Text>
           </Box>
         </SkeletonText>
       </Box>

@@ -21,11 +21,7 @@ const PersonDetail = () => {
       </Button>
 
       <Box marginY={4}>
-        <PersonSection
-          data={personDetail.data}
-          isLoading={personDetail.isLoading}
-          isError={personDetail.isError}
-        />
+        <PersonSection personId={id as string} />
       </Box>
     </Layout>
   );

@@ -14,15 +14,22 @@ import {
   useColorMode,
   useDisclosure,
 } from '@chakra-ui/react';
+import { useMovieCredits } from 'hooks/movie';
 import { SWRMovieCredits } from 'types/movie';
 
 import { CastAvatar, CastItem } from 'components/images';
 
-const CastSection = ({ data, isLoading, isError }: SWRMovieCredits) => {
+type CastSectionProps = {
+  movieId: string;
+};
+
+const CastSection = ({ movieId }: CastSectionProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { colorMode } = useColorMode();
 
-  if (isError) return <Text>Failed to Fetch Data</Text>;
+  const movieCredits: SWRMovieCredits = useMovieCredits(movieId as string);
+
+  if (movieCredits.isError) return <Text>Failed to Fetch Data</Text>;
 
   return (
     <Box marginY={8}>
@@ -34,13 +41,13 @@ const CastSection = ({ data, isLoading, isError }: SWRMovieCredits) => {
       </HStack>
 
       <Box whiteSpace="nowrap" overflowX="auto" padding={2}>
-        <Skeleton isLoaded={!isLoading} fadeDuration={2}>
-          {data?.cast.slice(0, 8).map((cast) => (
+        <Skeleton isLoaded={!movieCredits.isLoading} fadeDuration={2}>
+          {movieCredits.data?.cast.slice(0, 8).map((cast) => (
             <CastAvatar
               key={cast.id}
               castName={cast.name}
               imagePath={cast.profile_path}
-              routerPath={`/person/${cast.id}`}
+              routerPath={`/person/detail/${cast.id}`}
             />
           ))}
         </Skeleton>
@@ -63,13 +70,13 @@ const CastSection = ({ data, isLoading, isError }: SWRMovieCredits) => {
           </ModalHeader>
 
           <ModalBody padding={2}>
-            {data?.cast.map((cast) => (
+            {movieCredits.data?.cast.map((cast) => (
               <CastItem
                 key={cast.id}
                 name={cast.name}
                 character={cast.character}
                 imagePath={cast.profile_path}
-                routerPath={`/person/${cast.id}`}
+                routerPath={`/person/detail/${cast.id}`}
               />
             ))}
           </ModalBody>
