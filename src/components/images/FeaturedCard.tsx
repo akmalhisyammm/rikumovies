@@ -6,15 +6,16 @@ type FeaturedCardProps = {
   title: string;
   imagePath: string;
   routerPath: string;
+  slideCard?: boolean;
 };
 
-const FeaturedCard = ({ title, imagePath, routerPath }: FeaturedCardProps) => {
+const FeaturedCard = ({ title, imagePath, routerPath, slideCard }: FeaturedCardProps) => {
   return (
     <Box
-      display="inline-block"
+      display={slideCard ? 'inline-block' : 'inline'}
       position="relative"
-      maxWidth={150}
-      marginX={3}
+      maxWidth={slideCard ? 150 : 'full'}
+      marginX={slideCard ? 3 : 0}
       borderRadius={24}
       boxShadow="0px 4px 12px 0px rgba(0, 0, 0, 0.5)"
       transition="0.1s ease-out"
@@ -28,9 +29,15 @@ const FeaturedCard = ({ title, imagePath, routerPath }: FeaturedCardProps) => {
         alt={imagePath}
         display="block"
         width="100%"
-        height="auto"
+        height="100%"
         borderRadius={24}
-        fallback={<Skeleton width={150} height={225} borderRadius={24} />}
+        fallback={
+          <Skeleton
+            width={slideCard ? 150 : 174}
+            height={slideCard ? 225 : 260}
+            borderRadius={24}
+          />
+        }
       />
 
       <Box
