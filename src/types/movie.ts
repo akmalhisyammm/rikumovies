@@ -1,5 +1,15 @@
+export type FeaturedType = 'now_playing' | 'popular' | 'top_rated' | 'upcoming';
+
+export enum FeaturedTitle {
+  now_playing = 'Now Playing',
+  popular = 'Popular',
+  top_rated = 'Top Rated',
+  upcoming = 'Upcoming',
+}
+
 export interface FeaturedMovies {
   page: number;
+  total_pages: number;
   results: {
     id: string;
     title: string;
