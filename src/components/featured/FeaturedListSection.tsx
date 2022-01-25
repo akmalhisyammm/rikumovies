@@ -1,26 +1,22 @@
-import { Box, Button, Heading, HStack, SimpleGrid, Skeleton } from '@chakra-ui/react';
+import { Box, Button, HStack, SimpleGrid, Skeleton } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { useFeaturedMovies } from 'hooks/movie';
-import { FeaturedTitle, FeaturedType, SWRFeaturedMovies } from 'types/movie';
+import { FeaturedType, SWRMovieOverview } from 'types/movie';
 
 import { FeaturedCard } from 'components/images';
 
-type ListSectionProps = {
+type FeaturedListSectionProps = {
   type: FeaturedType;
   page: number;
 };
 
-const ListSection = ({ type, page }: ListSectionProps) => {
+const FeaturedListSection = ({ type, page }: FeaturedListSectionProps) => {
   const router = useRouter();
 
-  const featuredMovies: SWRFeaturedMovies = useFeaturedMovies(type, page);
+  const featuredMovies: SWRMovieOverview = useFeaturedMovies(type, page);
 
   return (
     <Box>
-      <Box>
-        <Heading>{FeaturedTitle[type as FeaturedType]}</Heading>
-      </Box>
-
       <HStack marginY={6}>
         <Button
           isFullWidth
@@ -52,4 +48,4 @@ const ListSection = ({ type, page }: ListSectionProps) => {
   );
 };
 
-export default ListSection;
+export default FeaturedListSection;
