@@ -1,7 +1,7 @@
 import { Box, Button, Heading, HStack, Skeleton, Text } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { useFeaturedMovies } from 'hooks/movie';
-import { FeaturedTitle, FeaturedType, SWRFeaturedMovies } from 'types/movie';
+import { FeaturedTitle, FeaturedType, SWRMovieOverview } from 'types/movie';
 
 import { FeaturedCard } from 'components/images';
 
@@ -12,7 +12,7 @@ type FeaturedSectionProps = {
 const FeaturedSection = ({ type }: FeaturedSectionProps) => {
   const router = useRouter();
 
-  const featuredMovies: SWRFeaturedMovies = useFeaturedMovies(type);
+  const featuredMovies: SWRMovieOverview = useFeaturedMovies(type);
 
   if (featuredMovies.isError) return <Text>Failed to Fetch Data</Text>;
 
