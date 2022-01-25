@@ -7,7 +7,7 @@ export enum FeaturedTitle {
   upcoming = 'Upcoming',
 }
 
-export interface FeaturedMovies {
+export interface MovieOverview {
   page: number;
   total_pages: number;
   results: {
@@ -49,8 +49,8 @@ export interface MovieCredits {
   }[];
 }
 
-export interface SWRFeaturedMovies {
-  data: FeaturedMovies;
+export interface SWRMovieOverview {
+  data: MovieOverview;
   isLoading: boolean;
   isError: boolean;
 }
