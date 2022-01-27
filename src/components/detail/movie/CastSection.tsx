@@ -62,7 +62,7 @@ const CastSection = ({ movieId }: CastSectionProps) => {
         isCentered>
         <ModalOverlay />
 
-        <ModalContent borderRadius={12}>
+        <ModalContent borderRadius={12} marginX={4}>
           <ModalHeader
             borderTopRadius={12}
             backgroundColor={colorMode === 'light' ? 'gray.200' : 'gray.800'}>

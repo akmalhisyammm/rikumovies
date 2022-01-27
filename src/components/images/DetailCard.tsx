@@ -11,7 +11,7 @@ const DetailCard = ({ imagePath }: DetailCardProps) => {
       <Image
         src={imagePath && TMDB_API_IMAGE_URL + imagePath}
         alt={imagePath}
-        fallback={<Skeleton height={550} borderRadius={18} />}
+        fallback={<Skeleton height={['full', 'full', 550]} borderRadius={18} />}
         boxShadow="0px 4px 12px 0px rgba(0, 0, 0, 0.5)"
         borderRadius={18}
       />

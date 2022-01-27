@@ -40,29 +40,37 @@ const PersonSection = ({ personId }: PersonSectionProps) => {
       {/* DESCRIPTION */}
       <Box textAlign={['center', 'center', 'left']}>
         <Skeleton isLoaded={!personDetail.isLoading} fadeDuration={2}>
-          <Box>
+          <Box marginBottom={4}>
             <Heading>{personDetail.data?.name}</Heading>
+          </Box>
+          <Box>
+            {personDetail.data?.gender && (
+              <HStack marginY={1} justifyContent={['center', 'center', 'left']}>
+                <FaTransgenderAlt />
+                <Text as="small">{Gender[personDetail.data?.gender]}</Text>
+              </HStack>
+            )}
+            {personDetail.data?.birthday && (
+              <HStack marginY={1} justifyContent={['center', 'center', 'left']}>
+                <FaBirthdayCake />
+                <Text as="small">
+                  {DateTime.fromISO(personDetail.data?.birthday).toFormat('DDD')} (
+                  {birthdayToAge(personDetail.data?.birthday, personDetail.data?.deathday)} years
+                  old)
+                </Text>
+              </HStack>
+            )}
+            {personDetail.data?.place_of_birth && (
+              <HStack marginY={1} justifyContent={['center', 'center', 'left']}>
+                <FaHome />
+                <Text as="small">{personDetail.data?.place_of_birth}</Text>
+              </HStack>
+            )}
           </Box>
         </Skeleton>
 
         <Skeleton isLoaded={!personDetail.isLoading} fadeDuration={2}>
           <Box marginY={8}>
-            <HStack marginY={1}>
-              <FaTransgenderAlt />
-              <Text as="small">{Gender[personDetail.data?.gender]}</Text>
-            </HStack>
-            <HStack marginY={1}>
-              <FaBirthdayCake />
-              <Text as="small">
-                {DateTime.fromISO(personDetail.data?.birthday).toFormat('DDD')} (
-                {birthdayToAge(personDetail.data?.birthday, personDetail.data?.deathday)} years old)
-              </Text>
-            </HStack>
-            <HStack marginY={1}>
-              <FaHome />
-              <Text as="small">{personDetail.data?.place_of_birth}</Text>
-            </HStack>
-
             <HStack marginY={4} justifyContent={['center', 'center', 'left']}>
               <Link href={personDetail.data?.homepage} isExternal>
                 <Button size="sm" leftIcon={<FaExternalLinkAlt />}>

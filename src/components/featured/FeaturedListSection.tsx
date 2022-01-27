@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { useFeaturedMovies } from 'hooks/movie';
 import { FeaturedType, SWRMovieOverview } from 'types/movie';
 
-import { FeaturedCard } from 'components/images';
+import { RouteCard } from 'components/images';
 
 type FeaturedListSectionProps = {
   type: FeaturedType;
@@ -32,10 +32,10 @@ const FeaturedListSection = ({ type, page }: FeaturedListSectionProps) => {
         </Button>
       </HStack>
 
-      <Skeleton isLoaded={!featuredMovies.isLoading} fadeDuration={2}>
-        <SimpleGrid columns={4} gap={6}>
+      <Skeleton isLoaded={!featuredMovies.isLoading} fadeDuration={2} minHeight={500}>
+        <SimpleGrid columns={[2, 2, 4]} gap={6}>
           {featuredMovies.data?.results.map((movie) => (
-            <FeaturedCard
+            <RouteCard
               key={movie.id}
               title={movie.title}
               imagePath={movie.poster_path}

@@ -13,8 +13,8 @@ const FeaturedMovies = () => {
 
   return (
     <Layout title={FeaturedTitle[type as FeaturedType] as string}>
-      <Button variant="ghost" leftIcon={<FaArrowLeft />} onClick={() => router.back()}>
-        Back
+      <Button variant="ghost" leftIcon={<FaArrowLeft />} onClick={() => router.replace('/')}>
+        Back to Home
       </Button>
 
       <Box marginY={4}>

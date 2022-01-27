@@ -13,7 +13,7 @@ const SearchMovies = () => {
   return (
     <Layout title={`Search${query ? ': "' + query + '"' : ''}`}>
       <Button variant="ghost" leftIcon={<FaArrowLeft />} onClick={() => router.replace('/')}>
-        Back
+        Back to Home
       </Button>
 
       <Box marginY={4}>

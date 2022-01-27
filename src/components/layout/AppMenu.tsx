@@ -1,13 +1,16 @@
 import { IconButton, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
 import { BiMenu } from 'react-icons/bi';
 
 const AppMenu = () => {
+  const router = useRouter();
+
   return (
     <Menu id="menu" isLazy>
       <MenuButton as={IconButton} aria-label="Menu" icon={<BiMenu />} variant="ghost" />
       <MenuList>
-        <MenuItem>Menu 1</MenuItem>
-        <MenuItem>Menu 2</MenuItem>
+        <MenuItem onClick={() => router.replace('/')}>Home</MenuItem>
+        <MenuItem onClick={() => router.replace('/about')}>About</MenuItem>
       </MenuList>
     </Menu>
   );

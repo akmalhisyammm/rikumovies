@@ -2,14 +2,14 @@ import { Box, Image, Skeleton, Text } from '@chakra-ui/react';
 import router from 'next/router';
 import { TMDB_API_IMAGE_URL } from 'constants/tmdb';
 
-type FeaturedCardProps = {
+type RouteCardProps = {
   title: string;
   imagePath: string;
   routerPath: string;
   slideCard?: boolean;
 };
 
-const FeaturedCard = ({ title, imagePath, routerPath, slideCard }: FeaturedCardProps) => {
+const RouteCard = ({ title, imagePath, routerPath, slideCard }: RouteCardProps) => {
   return (
     <Box
       display={slideCard ? 'inline-block' : 'inline'}
@@ -28,13 +28,13 @@ const FeaturedCard = ({ title, imagePath, routerPath, slideCard }: FeaturedCardP
         src={imagePath && TMDB_API_IMAGE_URL + imagePath}
         alt={imagePath}
         display="block"
-        width="100%"
-        height="100%"
+        width="full"
+        height="full"
         borderRadius={24}
         fallback={
           <Skeleton
-            width={slideCard ? 150 : 174}
-            height={slideCard ? 225 : 260}
+            width={slideCard ? 150 : 'full'}
+            height={slideCard ? 225 : 'full'}
             borderRadius={24}
           />
         }
@@ -45,8 +45,8 @@ const FeaturedCard = ({ title, imagePath, routerPath, slideCard }: FeaturedCardP
         position="absolute"
         justifyContent="center"
         alignItems="center"
-        width="100%"
-        height="100%"
+        width="full"
+        height="full"
         borderRadius={24}
         padding={4}
         backgroundColor="rgba(0, 0, 0, 0.5)"
@@ -61,4 +61,4 @@ const FeaturedCard = ({ title, imagePath, routerPath, slideCard }: FeaturedCardP
   );
 };
 
-export default FeaturedCard;
+export default RouteCard;
