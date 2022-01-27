@@ -1,6 +1,7 @@
 {
   "name": "rikumovies",
   "private": true,
+  "version": "1.0.0",
   "description": "Movies collection web app",
   "author": "Muhammad Akmal Hisyam",
   "license": "MIT",
