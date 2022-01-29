@@ -29,7 +29,7 @@ const Header = () => {
                 <Heading as="h1" fontSize={['md', 'xl']}>
                   RikuMovies
                 </Heading>
-                <Text as="small">Movies collection</Text>
+                <Text as="small">Movie collection</Text>
               </Box>
             </Flex>
           </ChakraLink>
