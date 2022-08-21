@@ -1,21 +1,39 @@
 # RikuMovies
 
-RikuMovies is a movie collection web app developed using Next.js and Chakra UI.
+RikuMovies is a website to display and search list of movies from The Movies Database (TMDB) API. Built using Next.js and Chakra UI.
 
-**API Source:**
+## Screenshots
 
-- [The Movie Database (TMDB) API](https://developers.themoviedb.org/3)
+![Screenshot](https://github.com/akmalhisyammm/akmalhisyam.my.id/blob/main/public/projects/previews/rikumovies_preview.png?raw=true)
 
-## Getting Started
+## API Source
 
-First, run the development server:
+[The Movie Database (TMDB) API](https://developers.themoviedb.org/3)
+
+## Tech Stack
+
+- TypeScript
+- Next.js
+- Chakra UI
+- SWR
+
+## Development
+
+In order to develop, please follow the following steps:
 
 ```bash
-npm run dev
-# or
+git@github.com:akmalhisyammm/rikumovies.git
+cd rikumovies
+yarn install --frozen-lockfile
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000 with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Credits
+
+[Freepik](https://www.freepik.com/)
+
+## License
+
+[MIT](./LICENSE)
