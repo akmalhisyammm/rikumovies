@@ -19,13 +19,13 @@ const FeaturedListSection = ({ type, page }: FeaturedListSectionProps) => {
     <Box>
       <HStack marginY={6}>
         <Button
-          isFullWidth
+          width="full"
           isDisabled={Number(page) === 1}
           onClick={() => router.replace(`/movie/${type}?page=${Number(page) - 1}`)}>
           Previous
         </Button>
         <Button
-          isFullWidth
+          width="full"
           isDisabled={Number(page) === featuredMovies.data?.total_pages}
           onClick={() => router.replace(`/movie/${type}?page=${Number(page) + 1}`)}>
           Next
