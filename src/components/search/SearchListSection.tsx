@@ -19,7 +19,7 @@ const SearchListSection = ({ searchQuery, pageQuery }: SearchListSectionProps) =
     <Box>
       <HStack marginY={6}>
         <Button
-          isFullWidth
+          width="full"
           isDisabled={Number(pageQuery) === 1}
           onClick={() =>
             router.replace(`/search/movie?query=${searchQuery}&page=${Number(pageQuery) - 1}`)
@@ -27,7 +27,7 @@ const SearchListSection = ({ searchQuery, pageQuery }: SearchListSectionProps) =
           Previous
         </Button>
         <Button
-          isFullWidth
+          width="full"
           isDisabled={Number(pageQuery) === searchMovies.data?.total_pages}
           onClick={() =>
             router.replace(`/search/movie?query=${searchQuery}&page=${Number(pageQuery) + 1}`)

@@ -21,7 +21,7 @@ const Header = () => {
   return (
     <Box as="header" width="full" height={100}>
       <Flex as="nav" maxWidth={800} height="full" margin="0 auto" alignItems="center">
-        <Link href="/" passHref>
+        <Link href="/" legacyBehavior passHref>
           <ChakraLink>
             <Flex alignItems="center">
               <Image src="/rikumovies.png" alt="logo" width={50} />
