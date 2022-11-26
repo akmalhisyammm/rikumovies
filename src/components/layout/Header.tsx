@@ -27,7 +27,7 @@ const Header = () => {
               <Image src="/rikumovies.png" alt="logo" width={50} />
               <Box marginLeft={4}>
                 <Heading as="h1" fontSize={['md', 'xl']}>
-                  RikuMovies
+                  Rikumovies
                 </Heading>
                 <Text as="small">Movie collection</Text>
               </Box>
