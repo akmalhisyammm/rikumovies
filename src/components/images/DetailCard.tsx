@@ -1,4 +1,5 @@
 import { Box, Image, Skeleton } from '@chakra-ui/react';
+
 import { TMDB_API_IMAGE_URL } from 'constants/tmdb';
 
 type DetailCardProps = {

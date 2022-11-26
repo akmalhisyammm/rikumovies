@@ -17,20 +17,22 @@ import {
   FaTransgenderAlt,
 } from 'react-icons/fa';
 import { DateTime } from 'luxon';
-import { usePersonDetail } from 'hooks/person';
-import { Gender, SWRPersonDetail } from 'types/person';
-import { birthdayToAge } from 'utils/birthdayToAge';
 
 import { DetailCard } from 'components/images';
+import { usePersonDetail } from 'hooks/person';
+import { Gender } from 'types/person';
+import { birthdayToAge } from 'utils/birthdayToAge';
+
+import type { SWRPersonDetail } from 'types/person';
 
 type PersonSectionProps = {
   personId: string;
 };
 
 const PersonSection = ({ personId }: PersonSectionProps) => {
-  const personDetail: SWRPersonDetail = usePersonDetail(personId as string);
+  const personDetail: SWRPersonDetail = usePersonDetail(personId);
 
-  if (personDetail.isError) return <Text>Failed to Fetch Data</Text>;
+  if (personDetail.isError) return <Text>Failed to fetch person detail.</Text>;
 
   return (
     <SimpleGrid columns={[1, 1, 2]} gap={[4, 4, 8]}>

@@ -1,6 +1,7 @@
 import { HStack, Avatar, Box, Text, useColorMode } from '@chakra-ui/react';
 import { RiArrowRightSLine } from 'react-icons/ri';
 import router from 'next/router';
+
 import { TMDB_API_IMAGE_URL } from 'constants/tmdb';
 
 type CastItemProps = {

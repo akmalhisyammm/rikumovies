@@ -14,18 +14,19 @@ import {
 } from '@chakra-ui/react';
 import { FaExternalLinkAlt, FaImdb } from 'react-icons/fa';
 import { DateTime } from 'luxon';
-import { useMovieDetail } from 'hooks/movie';
-import { SWRMovieDetail } from 'types/movie';
-import { runtimeFormat } from 'utils/runtimeFormat';
 
 import { DetailCard } from 'components/images';
+import { useMovieDetail } from 'hooks/movie';
+import { runtimeFormat } from 'utils/runtimeFormat';
+
+import type { SWRMovieDetail } from 'types/movie';
 
 type MovieSectionProps = {
   movieId: string;
 };
 
 const MovieSection = ({ movieId }: MovieSectionProps) => {
-  const movieDetail: SWRMovieDetail = useMovieDetail(movieId as string);
+  const movieDetail: SWRMovieDetail = useMovieDetail(movieId);
 
   const statusColor = () => {
     switch (movieDetail.data?.status) {
@@ -44,7 +45,7 @@ const MovieSection = ({ movieId }: MovieSectionProps) => {
     }
   };
 
-  if (movieDetail.isError) return <Text>Failed to Fetch movieDetail.Data</Text>;
+  if (movieDetail.isError) return <Text>Failed to fetch movie detail.</Text>;
 
   return (
     <SimpleGrid columns={[1, 1, 2]} gap={[4, 4, 8]}>
@@ -71,11 +72,11 @@ const MovieSection = ({ movieId }: MovieSectionProps) => {
               gap={2}
               marginBottom={4}>
               <CircularProgress
-                value={movieDetail.data?.vote_average * 10}
+                value={Math.round(movieDetail.data?.vote_average * 10)}
                 color="green.400"
                 thickness={8}>
                 <CircularProgressLabel>
-                  {movieDetail.data?.vote_average * 10}%
+                  {Math.round(movieDetail.data?.vote_average * 10)}%
                 </CircularProgressLabel>
               </CircularProgress>
               <Box>

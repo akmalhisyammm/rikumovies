@@ -1,5 +1,5 @@
-import Layout from 'components/layout';
 import { FeaturedSection } from 'components/home';
+import Layout from 'components/layout';
 
 const Home = () => {
   return (

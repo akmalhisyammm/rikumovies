@@ -1,5 +1,6 @@
 import { Avatar } from '@chakra-ui/react';
 import router from 'next/router';
+
 import { TMDB_API_IMAGE_URL } from 'constants/tmdb';
 
 type CastAvatarProps = {
