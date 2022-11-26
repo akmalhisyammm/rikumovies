@@ -1,10 +1,13 @@
 import { Box, Button, Heading } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
+import { NextSeo } from 'next-seo';
 import { FaArrowLeft } from 'react-icons/fa';
-import { FeaturedTitle, FeaturedType } from 'types/movie';
 
-import Layout from 'components/layout';
 import { FeaturedListSection } from 'components/featured';
+import { FeaturedTitle } from 'types/movie';
+import Layout from 'components/layout';
+
+import type { FeaturedType } from 'types/movie';
 
 const FeaturedMovies = () => {
   const router = useRouter();
@@ -12,7 +15,12 @@ const FeaturedMovies = () => {
   const { type, page } = router.query;
 
   return (
-    <Layout title={FeaturedTitle[type as FeaturedType] as string}>
+    <Layout>
+      <NextSeo
+        title={FeaturedTitle[type as FeaturedType]}
+        canonical={`${process.env.NEXT_PUBLIC_WEB_URL}/movie/${type}`}
+      />
+
       <Button variant="ghost" leftIcon={<FaArrowLeft />} onClick={() => router.replace('/')}>
         Back to Home
       </Button>

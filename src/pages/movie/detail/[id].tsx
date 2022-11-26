@@ -1,11 +1,13 @@
 import { Box, Button } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
+import { NextSeo } from 'next-seo';
 import { FaArrowLeft } from 'react-icons/fa';
-import { useMovieDetail } from 'hooks/movie';
-import { SWRMovieDetail } from 'types/movie';
 
-import Layout from 'components/layout';
 import { CastSection, MovieSection } from 'components/detail/movie';
+import { useMovieDetail } from 'hooks/movie';
+import Layout from 'components/layout';
+
+import type { SWRMovieDetail } from 'types/movie';
 
 const MovieDetail = () => {
   const router = useRouter();
@@ -15,7 +17,12 @@ const MovieDetail = () => {
   const movieDetail: SWRMovieDetail = useMovieDetail(id as string);
 
   return (
-    <Layout title={movieDetail.data?.title}>
+    <Layout>
+      <NextSeo
+        title={movieDetail.data?.title}
+        canonical={`${process.env.NEXT_PUBLIC_WEB_URL}/movie/detail/${id}`}
+      />
+
       <Button variant="ghost" leftIcon={<FaArrowLeft />} onClick={() => router.back()}>
         Back
       </Button>

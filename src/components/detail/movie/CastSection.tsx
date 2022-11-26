@@ -14,10 +14,11 @@ import {
   useColorMode,
   useDisclosure,
 } from '@chakra-ui/react';
-import { useMovieCredits } from 'hooks/movie';
-import { SWRMovieCredits } from 'types/movie';
 
 import { CastAvatar, CastItem } from 'components/images';
+import { useMovieCredits } from 'hooks/movie';
+
+import type { SWRMovieCredits } from 'types/movie';
 
 type CastSectionProps = {
   movieId: string;
@@ -27,9 +28,9 @@ const CastSection = ({ movieId }: CastSectionProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { colorMode } = useColorMode();
 
-  const movieCredits: SWRMovieCredits = useMovieCredits(movieId as string);
+  const movieCredits: SWRMovieCredits = useMovieCredits(movieId);
 
-  if (movieCredits.isError) return <Text>Failed to Fetch Data</Text>;
+  if (movieCredits.isError) return <Text>Failed to fetch movie credits.</Text>;
 
   return (
     <Box marginY={8}>

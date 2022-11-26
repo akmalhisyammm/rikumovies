@@ -1,9 +1,10 @@
 import { Box, Button, HStack, SimpleGrid, Skeleton, Text } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
-import { useSearchMovies } from 'hooks/search';
-import { SWRMovieOverview } from 'types/movie';
 
 import { RouteCard } from 'components/images';
+import { useSearchMovies } from 'hooks/search';
+
+import type { SWRMovieOverview } from 'types/movie';
 
 type SearchListSectionProps = {
   searchQuery: string;
@@ -14,6 +15,8 @@ const SearchListSection = ({ searchQuery, pageQuery }: SearchListSectionProps) =
   const router = useRouter();
 
   const searchMovies: SWRMovieOverview = useSearchMovies(searchQuery, pageQuery);
+
+  if (searchMovies.isError) return <Text>Failed to fetch search movies.</Text>;
 
   return (
     <Box>

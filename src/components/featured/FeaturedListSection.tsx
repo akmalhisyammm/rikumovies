@@ -1,9 +1,10 @@
-import { Box, Button, HStack, SimpleGrid, Skeleton } from '@chakra-ui/react';
+import { Box, Button, HStack, SimpleGrid, Skeleton, Text } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
-import { useFeaturedMovies } from 'hooks/movie';
-import { FeaturedType, SWRMovieOverview } from 'types/movie';
 
 import { RouteCard } from 'components/images';
+import { useFeaturedMovies } from 'hooks/movie';
+
+import type { FeaturedType, SWRMovieOverview } from 'types/movie';
 
 type FeaturedListSectionProps = {
   type: FeaturedType;
@@ -14,6 +15,8 @@ const FeaturedListSection = ({ type, page }: FeaturedListSectionProps) => {
   const router = useRouter();
 
   const featuredMovies: SWRMovieOverview = useFeaturedMovies(type, page);
+
+  if (featuredMovies.isError) return <Text>Failed to fetch featured movies.</Text>;
 
   return (
     <Box>

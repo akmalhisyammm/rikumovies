@@ -1,5 +1,6 @@
 import { Box, Image, Skeleton, Text } from '@chakra-ui/react';
 import router from 'next/router';
+
 import { TMDB_API_IMAGE_URL } from 'constants/tmdb';
 
 type RouteCardProps = {
