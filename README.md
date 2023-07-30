@@ -1,10 +1,10 @@
-# RikuMovies
+# Rikumovies
 
-RikuMovies is a website to display and search list of movies from The Movies Database (TMDB) API. Built using Next.js and Chakra UI.
+Rikumovies is a website to display and search list of movies from The Movies Database (TMDB) API. Built using Next.js and Chakra UI.
 
 ## Screenshots
 
-![Screenshot](https://github.com/akmalhisyammm/akmalhisyam.my.id/blob/main/public/projects/previews/rikumovies_preview.png?raw=true)
+![Screenshot](https://akmalhisyam.s3.ap-southeast-1.amazonaws.com/projects/previews/rikumovies_preview.png)
 
 ## API Source
 
